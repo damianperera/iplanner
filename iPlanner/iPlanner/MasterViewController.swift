@@ -9,13 +9,41 @@
 import UIKit
 import CoreData
 
+class CourseworkTableViewCell: UITableViewCell {
+    @IBOutlet weak var courseworkName: UILabel!
+    @IBOutlet weak var weight: UILabel!
+    @IBOutlet weak var moduleName: UILabel!
+    @IBOutlet weak var level: UILabel!
+    @IBOutlet weak var dueDate: UILabel!
+    @IBOutlet weak var countdown: UILabel!
+}
+
 class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate, AddCourseworkDelegate {
 
     var detailViewController: DetailViewController? = nil
     var managedObjectContext: NSManagedObjectContext? = nil
 
     func saveData(name: String, module: String, dueDate: Date, level: Int32, weight: Int32, mark: Int32, notes: String) {
-        print(name, module)
+        let context = self.fetchedResultsController.managedObjectContext
+        let newCoursework = Coursework(context: context)
+        
+        newCoursework.name = name
+        newCoursework.moduleId = module
+        newCoursework.dueDate = dueDate
+        newCoursework.level = level
+        newCoursework.weight = weight
+        newCoursework.mark = mark
+        newCoursework.notes = notes
+        
+        // Save the context.
+        do {
+            try context.save()
+        } catch {
+            // Replace this implementation with code to handle the error appropriately.
+            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            let nserror = error as NSError
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
     }
  
     override func viewDidLoad() {
@@ -95,7 +123,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CourseworkTableViewCell
         let coursework = fetchedResultsController.object(at: indexPath)
         configureCell(cell, withCoursework: coursework)
         return cell
@@ -122,8 +150,15 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         }
     }
 
-    func configureCell(_ cell: UITableViewCell, withCoursework coursework: Coursework) {
-        cell.textLabel!.text = coursework.name
+    func configureCell(_ cell: CourseworkTableViewCell, withCoursework coursework: Coursework) {
+        cell.courseworkName.text = coursework.name
+        cell.moduleName.text = coursework.moduleId
+        cell.level.text = String(coursework.level)
+        cell.weight.text = String(coursework.weight)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .short
+        cell.dueDate.text = dateFormatter.string(from: coursework.dueDate!)
     }
 
     // MARK: - Fetched results controller
@@ -184,9 +219,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             case .delete:
                 tableView.deleteRows(at: [indexPath!], with: .fade)
             case .update:
-                configureCell(tableView.cellForRow(at: indexPath!)!, withCoursework: anObject as! Coursework)
+                configureCell(tableView.cellForRow(at: indexPath!) as! CourseworkTableViewCell, withCoursework: anObject as! Coursework)
             case .move:
-                configureCell(tableView.cellForRow(at: indexPath!)!, withCoursework: anObject as! Coursework)
+                configureCell(tableView.cellForRow(at: indexPath!)! as! CourseworkTableViewCell, withCoursework: anObject as! Coursework)
                 tableView.moveRow(at: indexPath!, to: newIndexPath!)
         }
     }
