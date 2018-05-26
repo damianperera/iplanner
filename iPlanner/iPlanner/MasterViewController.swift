@@ -159,6 +159,8 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .short
         cell.dueDate.text = dateFormatter.string(from: coursework.dueDate!)
+//        let diffInDays = Calendar.current.dateComponents([.day], from: Date, to: coursework.dueDate).day
+//        cell.countdown.text = diffInDays
     }
 
     // MARK: - Fetched results controller

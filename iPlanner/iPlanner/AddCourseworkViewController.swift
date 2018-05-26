@@ -32,6 +32,7 @@ class AddCourseworkViewController: UIViewController, UITextFieldDelegate {
     @IBAction func didClickDueDate(_ sender: UITextField) {
         let datePickerView:UIDatePicker = UIDatePicker()
         datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
+        datePickerView.minimumDate = Date()
         dueDateField.inputView = datePickerView
         datePickerView.addTarget(self, action: #selector(AddCourseworkViewController.dateChanged), for: UIControlEvents.valueChanged)
     }
@@ -70,7 +71,7 @@ class AddCourseworkViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        markLabel.text = "0"
+        markLabel.text = "30"
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
