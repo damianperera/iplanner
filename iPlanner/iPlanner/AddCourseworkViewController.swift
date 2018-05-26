@@ -58,6 +58,7 @@ class AddCourseworkViewController: UIViewController, UITextFieldDelegate {
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .short
         delegate?.saveData(name: name, module: module, dueDate: dateFormatter.date(from: dueDate)!, level: Int32(level)!, weight: Int32(weight)!, mark: Int32(mark)!, notes: notes)
+        dismiss(animated: true, completion: nil)
     }
     
     @objc func dateChanged(sender: UIDatePicker) {

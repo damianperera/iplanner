@@ -17,7 +17,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     func saveData(name: String, module: String, dueDate: Date, level: Int32, weight: Int32, mark: Int32, notes: String) {
         print(name, module)
     }
-    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -77,6 +77,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
+        } else if segue.identifier == "AddCourseworkSegue" {
+            let controller = segue.destination as! AddCourseworkViewController
+            controller.delegate = self
         }
     }
 

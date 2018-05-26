@@ -114,7 +114,7 @@
                     <navigationItem key="navigationItem" title="Courseworks" id="Zdf-7t-Un8">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="wNh-Gi-cCm">
                             <connections>
-                                <segue destination="z9S-oP-CKX" kind="popoverPresentation" popoverAnchorBarButtonItem="wNh-Gi-cCm" id="8nM-SU-7nL">
+                                <segue destination="z9S-oP-CKX" kind="popoverPresentation" identifier="AddCourseworkSegue" popoverAnchorBarButtonItem="wNh-Gi-cCm" id="8nM-SU-7nL">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                 </segue>
                             </connections>
