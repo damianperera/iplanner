@@ -9,7 +9,23 @@
 import Foundation
 import UIKit
 
+protocol AddCourseworkDelegate {
+    
+}
+
 class AddCourseworkViewController: UIViewController {
+    
+    @IBOutlet weak var courseworkName: UITextField!
+    @IBOutlet weak var moduleName: UITextField!
+    @IBOutlet weak var dueDate: UITextField!
+    @IBOutlet weak var level: UITextField!
+    @IBOutlet weak var overallWeight: UITextField!
+    @IBOutlet weak var finalMark: UISlider!
+    @IBOutlet weak var notes: UITextView!
+    
+    @IBAction func didClickDueDate(_ sender: UITextField) {
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
