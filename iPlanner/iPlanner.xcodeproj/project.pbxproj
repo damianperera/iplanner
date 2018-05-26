@@ -14,6 +14,7 @@
 		B35C60E920A717FB00E48F44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B35C60E820A717FB00E48F44 /* Assets.xcassets */; };
 		B35C60EC20A717FB00E48F44 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B35C60EA20A717FB00E48F44 /* LaunchScreen.storyboard */; };
 		B3DD8D2920B961DA00B78493 /* iPlanner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B3DD8D2720B961DA00B78493 /* iPlanner.xcdatamodeld */; };
+		B3DD8D2D20B9963100B78493 /* AddCourseworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DD8D2C20B9963100B78493 /* AddCourseworkViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		B35C60EB20A717FB00E48F44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B35C60ED20A717FB00E48F44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B3DD8D2820B961DA00B78493 /* iPlanner.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iPlanner.xcdatamodel; sourceTree = "<group>"; };
+		B3DD8D2C20B9963100B78493 /* AddCourseworkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseworkViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 			children = (
 				B35C60DC20A717F900E48F44 /* AppDelegate.swift */,
 				B35C60E120A717F900E48F44 /* MasterViewController.swift */,
+				B3DD8D2C20B9963100B78493 /* AddCourseworkViewController.swift */,
 				B35C60E320A717F900E48F44 /* DetailViewController.swift */,
 				B35C60E520A717F900E48F44 /* Main.storyboard */,
 				B35C60E820A717FB00E48F44 /* Assets.xcassets */,
@@ -143,6 +146,7 @@
 			files = (
 				B35C60DD20A717F900E48F44 /* AppDelegate.swift in Sources */,
 				B35C60E220A717F900E48F44 /* MasterViewController.swift in Sources */,
+				B3DD8D2D20B9963100B78493 /* AddCourseworkViewController.swift in Sources */,
 				B35C60E420A717F900E48F44 /* DetailViewController.swift in Sources */,
 				B3DD8D2920B961DA00B78493 /* iPlanner.xcdatamodeld in Sources */,
 			);
