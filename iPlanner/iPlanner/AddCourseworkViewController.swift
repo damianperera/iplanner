@@ -13,7 +13,7 @@ protocol AddCourseworkDelegate {
     
 }
 
-class AddCourseworkViewController: UIViewController {
+class AddCourseworkViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var courseworkName: UITextField!
     @IBOutlet weak var moduleName: UITextField!
@@ -24,6 +24,16 @@ class AddCourseworkViewController: UIViewController {
     @IBOutlet weak var notes: UITextView!
     
     @IBAction func didClickDueDate(_ sender: UITextField) {
+        let datePickerView:UIDatePicker = UIDatePicker()
+        datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
+        dueDate.inputView = datePickerView
+        datePickerView.addTarget(self, action: #selector(AddCourseworkViewController.dateChanged), for: UIControlEvents.valueChanged)
+    }
+    
+    @objc func dateChanged(sender: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+        dueDate.text = dateFormatter.string(from: sender.date)
     }
     
     override func viewDidLoad() {

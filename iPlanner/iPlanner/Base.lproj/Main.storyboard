@@ -166,7 +166,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
-                                                    <action selector="didClickDueDate:" destination="z9S-oP-CKX" eventType="touchDown" id="DzK-xc-MLS"/>
+                                                    <action selector="didClickDueDate:" destination="z9S-oP-CKX" eventType="editingDidBegin" id="1Po-Be-uds"/>
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="% Weight" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="91m-OI-PBX">
