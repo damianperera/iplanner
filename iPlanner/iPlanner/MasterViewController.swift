@@ -162,7 +162,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         cell.dueDate.text = dateFormatter.string(from: coursework.dueDate!)
         
         if (Calendar.current.dateComponents([.hour], from: Date(), to: coursework.dueDate!).hour! < 0) {
-            cell.countdown.text = "Submission Closed"
+            cell.countdown.text = "Date Passed"
         } else if Calendar.current.isDateInToday(coursework.dueDate!) {
             let diffInHours = Calendar.current.dateComponents([.hour], from: Date(), to: coursework.dueDate!).hour!
             cell.countdown.text = "0d " + String(diffInHours) + "h"
