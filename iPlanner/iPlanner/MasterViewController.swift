@@ -155,12 +155,22 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         cell.moduleName.text = coursework.moduleId
         cell.level.text = String(coursework.level)
         cell.weight.text = String(coursework.weight)
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .short
         cell.dueDate.text = dateFormatter.string(from: coursework.dueDate!)
-//        let diffInDays = Calendar.current.dateComponents([.day], from: Date, to: coursework.dueDate).day
-//        cell.countdown.text = diffInDays
+        
+        if (Calendar.current.dateComponents([.hour], from: Date(), to: coursework.dueDate!).hour! < 0) {
+            cell.countdown.text = "Submission Closed"
+        } else if Calendar.current.isDateInToday(coursework.dueDate!) {
+            let diffInHours = Calendar.current.dateComponents([.hour], from: Date(), to: coursework.dueDate!).hour!
+            cell.countdown.text = "0d " + String(diffInHours) + "h"
+        } else {
+            let diffInDays = Calendar.current.dateComponents([.day], from: Date(), to: coursework.dueDate!).day!
+            let diffInHours = Calendar.current.dateComponents([.hour], from: Calendar.current.startOfDay(for: coursework.dueDate!), to: coursework.dueDate!).hour!
+            cell.countdown.text = String(diffInDays) + "d " + String(diffInHours) + "h"
+        }
     }
 
     // MARK: - Fetched results controller
@@ -176,7 +186,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         fetchRequest.fetchBatchSize = 20
         
         // Edit the sort key as appropriate.
-        let sortDescriptor = NSSortDescriptor(key: "name", ascending: false)
+        let sortDescriptor = NSSortDescriptor(key: "dueDate", ascending: false)
         
         fetchRequest.sortDescriptors = [sortDescriptor]
         
