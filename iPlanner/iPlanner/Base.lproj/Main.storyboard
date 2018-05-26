@@ -143,13 +143,13 @@
                                                 <rect key="frame" x="20" y="20" width="360" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Module Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RBM-Jh-BMk">
                                                 <rect key="frame" x="20" y="58" width="258" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Level" textAlignment="justified" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dch-l3-7U7">
                                                 <rect key="frame" x="286" y="58" width="94" height="30"/>
@@ -158,7 +158,7 @@
                                                 </constraints>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Due Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q9e-JF-0R4">
                                                 <rect key="frame" x="20" y="96" width="258" height="30"/>
@@ -173,12 +173,15 @@
                                                 <rect key="frame" x="286" y="96" width="94" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             </textField>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="aIe-DH-wgf">
                                                 <rect key="frame" x="20" y="134" width="260" height="30"/>
+                                                <connections>
+                                                    <action selector="didPickerValueChanged:" destination="z9S-oP-CKX" eventType="valueChanged" id="MJp-JN-lsj"/>
+                                                </connections>
                                             </slider>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mark" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LHi-RW-enK">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LHi-RW-enK">
                                                 <rect key="frame" x="286" y="138" width="94" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="Srb-SB-CEQ"/>
@@ -198,8 +201,15 @@
                                                 <items>
                                                     <barButtonItem systemItem="cancel" id="oit-Ap-ymX">
                                                         <color key="tintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <connections>
+                                                            <action selector="didClickCancel:" destination="z9S-oP-CKX" id="Y1s-YY-sYX"/>
+                                                        </connections>
                                                     </barButtonItem>
-                                                    <barButtonItem systemItem="save" id="9SU-ZC-CGI"/>
+                                                    <barButtonItem systemItem="save" id="9SU-ZC-CGI">
+                                                        <connections>
+                                                            <action selector="didClickSave:" destination="z9S-oP-CKX" id="pKn-X2-npo"/>
+                                                        </connections>
+                                                    </barButtonItem>
                                                 </items>
                                             </toolbar>
                                         </subviews>
@@ -258,13 +268,14 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="400" height="400"/>
                     <connections>
-                        <outlet property="courseworkName" destination="TEx-vE-xjk" id="UhT-gb-BSj"/>
-                        <outlet property="dueDate" destination="q9e-JF-0R4" id="PzI-dM-TJ0"/>
-                        <outlet property="finalMark" destination="aIe-DH-wgf" id="TfS-ZL-hKz"/>
-                        <outlet property="level" destination="Dch-l3-7U7" id="Rv8-I9-XHL"/>
-                        <outlet property="moduleName" destination="RBM-Jh-BMk" id="MKc-Nu-jPG"/>
-                        <outlet property="notes" destination="CcY-0R-eB8" id="9b2-92-tPE"/>
-                        <outlet property="overallWeight" destination="91m-OI-PBX" id="gq9-fj-J1T"/>
+                        <outlet property="courseworkNameField" destination="TEx-vE-xjk" id="iRh-Ik-Tgq"/>
+                        <outlet property="dueDateField" destination="q9e-JF-0R4" id="W6s-hJ-Sr6"/>
+                        <outlet property="finalMarkField" destination="aIe-DH-wgf" id="B2S-Rd-Pjj"/>
+                        <outlet property="levelField" destination="Dch-l3-7U7" id="QR8-A6-NlK"/>
+                        <outlet property="markLabel" destination="LHi-RW-enK" id="1za-Ng-DR8"/>
+                        <outlet property="moduleNameField" destination="RBM-Jh-BMk" id="4gV-nw-nj4"/>
+                        <outlet property="notesField" destination="CcY-0R-eB8" id="2iB-Wd-K7v"/>
+                        <outlet property="overallWeightField" destination="91m-OI-PBX" id="Ruf-Fg-X37"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dOR-um-DQP" userLabel="First Responder" sceneMemberID="firstResponder"/>
