@@ -38,7 +38,7 @@ class DetailViewController: UIViewController, AddCourseworkDelegate, AddTaskView
         } else if segue.identifier == "AddTaskSegue" {
             let controller = segue.destination as! AddTaskViewController
             controller.delegate = self
-            controller.preferredContentSize = CGSize(width: 400, height: 300)
+            controller.preferredContentSize = CGSize(width: 400, height: 250)
         }
     }
     
