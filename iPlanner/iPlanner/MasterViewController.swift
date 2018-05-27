@@ -84,6 +84,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         } else if segue.identifier == "AddCourseworkSegue" {
             let controller = segue.destination as! AddCourseworkViewController
             controller.delegate = self
+            controller.preferredContentSize = CGSize(width: 400, height: 400)
         }
     }
 

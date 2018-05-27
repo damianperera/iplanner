@@ -47,12 +47,15 @@ class DetailViewController: UIViewController, AddCourseworkDelegate {
             let controller = segue.destination as! AddCourseworkViewController
             controller.coursework = courseworkItem
             controller.delegate = self
+            controller.preferredContentSize = CGSize(width: 400, height: 400)
         } else if segue.identifier == "SetCalendarReminderSegue" {
             let controller = segue.destination as! AddReminderViewController
             controller.isInternalNotification = false
+            controller.preferredContentSize = CGSize(width: 400, height: 150)
         } else if segue.identifier == "SetInternalReminderSegue" {
             let controller = segue.destination as! AddReminderViewController
             controller.isInternalNotification = true
+            controller.preferredContentSize = CGSize(width: 400, height: 150)
         }
     }
 
