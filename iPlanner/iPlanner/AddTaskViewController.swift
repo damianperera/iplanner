@@ -17,6 +17,7 @@ class AddTaskViewController: UIViewController {
     
     var delegate: AddTaskViewDelegate?
     var coursework: Coursework?
+    var task: Task?
     @IBOutlet weak var fieldTaskName: UITextField?
     @IBOutlet weak var fieldStartDate: UITextField?
     @IBOutlet weak var fieldDueDate: UITextField?
@@ -88,9 +89,28 @@ class AddTaskViewController: UIViewController {
         fieldStartDate?.text = dateFormatter.string(from: sender.date)
     }
     
+    func setFieldsFromObject() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
+        if let selectedTask = task {
+            fieldTaskName?.text = selectedTask.name
+            fieldStartDate?.text = dateFormatter.string(for: selectedTask.startDate)
+            fieldDueDate?.text = dateFormatter.string(for: selectedTask.dueDate)
+            sliderComplete?.value = Float(selectedTask.completed)
+            labelComplete?.text = String(selectedTask.completed) + "% Complete"
+            fieldNotes?.text = selectedTask.notes
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        labelComplete?.text = "30% Complete"
+        guard self.task != nil
+        else {
+                labelComplete?.text = "30% Complete"
+                return
+        }
+        setFieldsFromObject()
     }
     
     override func didReceiveMemoryWarning() {

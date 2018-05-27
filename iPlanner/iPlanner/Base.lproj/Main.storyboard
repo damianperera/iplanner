@@ -427,6 +427,7 @@
                                                             <outlet property="countdown" destination="AfM-8y-e52" id="I8A-mS-VCZ"/>
                                                             <outlet property="name" destination="ryY-x5-P2M" id="VMB-vQ-Tb5"/>
                                                             <outlet property="notes" destination="9x9-oa-jak" id="J4R-5y-1h7"/>
+                                                            <segue destination="1VY-jq-cje" kind="show" identifier="EditTaskSegue" trigger="accessoryAction" id="Jbo-yr-Ky2"/>
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>
@@ -1089,6 +1090,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="6S0-TO-JiA"/>
+        <segue reference="Jbo-yr-Ky2"/>
         <segue reference="Ju8-L5-9IN"/>
         <segue reference="itc-Fb-8uM"/>
     </inferredMetricsTieBreakers>

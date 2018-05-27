@@ -18,6 +18,12 @@ class TaskTableViewCell: UITableViewCell {
 
 extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let tasks = courseworkItem?.tasks?.array as! [Task]
+        selectedTask = tasks[indexPath.row]
+        performSegue(withIdentifier: "EditTaskSegue", sender: self)
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -115,6 +121,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
 
 class DetailViewController: UIViewController, AddCourseworkDelegate, NSFetchedResultsControllerDelegate, AddTaskViewDelegate {
     
+    var selectedTask:Task?
     var _fetchedResultsController: NSFetchedResultsController<Task>? = nil
     var managedObjectContext: NSManagedObjectContext?
     @IBOutlet weak var buttonReminder: UIBarButtonItem!
@@ -145,6 +152,11 @@ class DetailViewController: UIViewController, AddCourseworkDelegate, NSFetchedRe
             let controller = segue.destination as! AddTaskViewController
             controller.delegate = self
             controller.coursework = courseworkItem
+            controller.preferredContentSize = CGSize(width: 400, height: 250)
+        } else if segue.identifier == "EditTaskSegue" {
+            let controller = segue.destination as! AddTaskViewController
+            controller.delegate = self
+            controller.task = selectedTask
             controller.preferredContentSize = CGSize(width: 400, height: 250)
         }
     }
