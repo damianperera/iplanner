@@ -62,7 +62,21 @@ class DetailViewController: UIViewController, AddCourseworkDelegate, AddTaskView
     }
     
     func saveData(taskName: String, startDate: Date, dueDate: Date, complete: Int32, notes: String) {
-        print(taskName, startDate, dueDate, complete, notes)
+        let context = managedObjectContext
+        let newTask = Task(context: context!)
+        newTask.name = taskName
+        newTask.startDate = startDate
+        newTask.dueDate = dueDate
+        newTask.completed = complete
+        newTask.notes = notes
+        
+        courseworkItem?.addToTask(newTask)
+        do {
+            try self.managedObjectContext?.save()
+        } catch {
+            let saveError = error as NSError
+            print("\(saveError), \(saveError.userInfo)")
+        }
     }
 
     func configureView() {
