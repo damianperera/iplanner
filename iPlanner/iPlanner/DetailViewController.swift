@@ -9,8 +9,113 @@
 import UIKit
 import CoreData
 
-class DetailViewController: UIViewController, AddCourseworkDelegate, AddTaskViewDelegate {
+class TaskTableViewCell: UITableViewCell {
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var notes: UILabel!
+    @IBOutlet weak var countdown: UILabel!
+    @IBOutlet weak var completed: UILabel!
+}
+
+extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let tasks = courseworkItem?.tasks?.array as? [Task]
+        if let count = (tasks?.count) {
+            return count
+        }
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Task Cell", for: indexPath) as! TaskTableViewCell
+        let tasks = courseworkItem?.tasks?.array as! [Task]
+        let task = tasks[indexPath.row]
+        configureCell(cell, withTask: task)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            courseworkItem?.removeFromTasks(at: indexPath.row)
+            
+            do {
+                try self.managedObjectContext?.save()
+            } catch {
+                let saveError = error as NSError
+                print("\(saveError), \(saveError.userInfo)")
+            }
+            
+            tableView.reloadData()
+        }
+    }
+    
+    func configureCell(_ cell: TaskTableViewCell, withTask task: Task) {
+        cell.name.text = task.name
+        cell.notes.text = task.notes
+        cell.completed.text = String(task.completed) + "% Completed"
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .short
+        
+        if (Calendar.current.dateComponents([.hour], from: Date(), to: task.dueDate!).hour! < 0) {
+            cell.countdown.text = "Date Passed"
+        } else if Calendar.current.isDateInToday(task.dueDate!) {
+            let diffInHours = Calendar.current.dateComponents([.hour], from: task.startDate!, to: task.dueDate!).hour!
+            cell.countdown.text = "0d " + String(diffInHours) + "h"
+        } else {
+            let diffInDays = Calendar.current.dateComponents([.day], from: task.startDate!, to: task.dueDate!).day!
+            let diffInHours = Calendar.current.dateComponents([.hour], from: Calendar.current.startOfDay(for: task.startDate!), to: task.dueDate!).hour!
+            cell.countdown.text = String(diffInDays) + "d " + String(diffInHours) + "h"
+        }
+    }
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+        switch type {
+        case .insert:
+            tableView.insertSections(IndexSet(integer: sectionIndex), with: .fade)
+        case .delete:
+            tableView.deleteSections(IndexSet(integer: sectionIndex), with: .fade)
+        default:
+            return
+        }
+    }
+
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            tableView.insertRows(at: [newIndexPath!], with: .fade)
+        case .delete:
+            tableView.deleteRows(at: [indexPath!], with: .fade)
+        case .update:
+            configureCell(tableView.cellForRow(at: indexPath!) as! TaskTableViewCell, withTask: anObject as! Task)
+        case .move:
+            configureCell(tableView.cellForRow(at: indexPath!)! as! TaskTableViewCell, withTask: anObject as! Task)
+            tableView.moveRow(at: indexPath!, to: newIndexPath!)
+        }
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
+    
+}
+
+class DetailViewController: UIViewController, AddCourseworkDelegate, NSFetchedResultsControllerDelegate, AddTaskViewDelegate {
+    
+    var _fetchedResultsController: NSFetchedResultsController<Task>? = nil
     var managedObjectContext: NSManagedObjectContext?
     @IBOutlet weak var buttonReminder: UIBarButtonItem!
     @IBOutlet weak var buttonEdit: UIBarButtonItem!
@@ -22,6 +127,7 @@ class DetailViewController: UIViewController, AddCourseworkDelegate, AddTaskView
     @IBOutlet weak var courseworkLevel: UILabel?
     @IBOutlet weak var courseworkMark: UILabel?
     @IBOutlet weak var courseworkProgressText: UILabel?
+    @IBOutlet weak var tableView: UITableView!
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "EditCourseworkSegue" {
@@ -70,13 +176,15 @@ class DetailViewController: UIViewController, AddCourseworkDelegate, AddTaskView
         newTask.completed = complete
         newTask.notes = notes
         
-        courseworkItem?.addToTask(newTask)
+        courseworkItem?.addToTasks(newTask)
         do {
             try self.managedObjectContext?.save()
         } catch {
             let saveError = error as NSError
             print("\(saveError), \(saveError.userInfo)")
         }
+        
+        tableView.reloadData()
     }
 
     func configureView() {
@@ -91,7 +199,6 @@ class DetailViewController: UIViewController, AddCourseworkDelegate, AddTaskView
             courseworkWeight?.text = String(coursework.weight) + "%"
             courseworkProgressText?.text = "Progressing"
             courseworkDaysLeft?.text = String(diffInDays) + " Days Left"
-            
             toggleViews(isHidden: false)
         }
     }
@@ -116,6 +223,8 @@ class DetailViewController: UIViewController, AddCourseworkDelegate, AddTaskView
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         toggleViews(isHidden: true)
+        tableView.delegate = self
+        tableView.dataSource = self
         configureView()
     }
 
@@ -129,7 +238,6 @@ class DetailViewController: UIViewController, AddCourseworkDelegate, AddTaskView
             configureView()
         }
     }
-
 
 }
 
