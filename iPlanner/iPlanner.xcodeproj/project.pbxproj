@@ -15,6 +15,8 @@
 		B35C60EC20A717FB00E48F44 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B35C60EA20A717FB00E48F44 /* LaunchScreen.storyboard */; };
 		B3DD8D2920B961DA00B78493 /* iPlanner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B3DD8D2720B961DA00B78493 /* iPlanner.xcdatamodeld */; };
 		B3DD8D2D20B9963100B78493 /* AddCourseworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DD8D2C20B9963100B78493 /* AddCourseworkViewController.swift */; };
+		B3DD8D3020BA794200B78493 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3DD8D2F20BA794200B78493 /* EventKit.framework */; };
+		B3DD8D3220BA7B6600B78493 /* AddReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DD8D3120BA7B6600B78493 /* AddReminderViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		B35C60ED20A717FB00E48F44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B3DD8D2820B961DA00B78493 /* iPlanner.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iPlanner.xcdatamodel; sourceTree = "<group>"; };
 		B3DD8D2C20B9963100B78493 /* AddCourseworkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseworkViewController.swift; sourceTree = "<group>"; };
+		B3DD8D2F20BA794200B78493 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		B3DD8D3120BA7B6600B78493 /* AddReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReminderViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3DD8D3020BA794200B78493 /* EventKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,6 +51,7 @@
 			children = (
 				B35C60DB20A717F900E48F44 /* iPlanner */,
 				B35C60DA20A717F900E48F44 /* Products */,
+				B3DD8D2E20BA794100B78493 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,6 +69,7 @@
 				B35C60DC20A717F900E48F44 /* AppDelegate.swift */,
 				B35C60E120A717F900E48F44 /* MasterViewController.swift */,
 				B3DD8D2C20B9963100B78493 /* AddCourseworkViewController.swift */,
+				B3DD8D3120BA7B6600B78493 /* AddReminderViewController.swift */,
 				B35C60E320A717F900E48F44 /* DetailViewController.swift */,
 				B35C60E520A717F900E48F44 /* Main.storyboard */,
 				B35C60E820A717FB00E48F44 /* Assets.xcassets */,
@@ -71,6 +78,14 @@
 				B3DD8D2720B961DA00B78493 /* iPlanner.xcdatamodeld */,
 			);
 			path = iPlanner;
+			sourceTree = "<group>";
+		};
+		B3DD8D2E20BA794100B78493 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B3DD8D2F20BA794200B78493 /* EventKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,6 +163,7 @@
 				B35C60E220A717F900E48F44 /* MasterViewController.swift in Sources */,
 				B3DD8D2D20B9963100B78493 /* AddCourseworkViewController.swift in Sources */,
 				B35C60E420A717F900E48F44 /* DetailViewController.swift in Sources */,
+				B3DD8D3220BA7B6600B78493 /* AddReminderViewController.swift in Sources */,
 				B3DD8D2920B961DA00B78493 /* iPlanner.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

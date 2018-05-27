@@ -8,6 +8,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -225,7 +226,18 @@
                                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wvs-0Q-ShM">
                                                 <rect key="frame" x="0.0" y="0.0" width="792" height="44"/>
                                                 <items>
-                                                    <navigationItem title="Tasks" id="ibu-NA-9KL"/>
+                                                    <navigationItem title="Tasks" id="ibu-NA-9KL">
+                                                        <rightBarButtonItems>
+                                                            <barButtonItem style="plain" systemItem="add" id="oYD-rA-ilN"/>
+                                                            <barButtonItem title="Reminder" style="plain" id="GQJ-Jt-TRo">
+                                                                <connections>
+                                                                    <segue destination="5rb-Y9-XtB" kind="popoverPresentation" identifier="SetInternalReminderSegue" popoverAnchorBarButtonItem="GQJ-Jt-TRo" id="okp-XI-d8A">
+                                                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                                                    </segue>
+                                                                </connections>
+                                                            </barButtonItem>
+                                                        </rightBarButtonItems>
+                                                    </navigationItem>
                                                 </items>
                                             </navigationBar>
                                         </subviews>
@@ -258,15 +270,26 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Tasks" id="mOI-FS-AaM">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="edit" id="xBc-Va-JWl">
-                            <connections>
-                                <segue destination="z9S-oP-CKX" kind="popoverPresentation" identifier="EditCourseworkSegue" popoverAnchorBarButtonItem="xBc-Va-JWl" id="itc-Fb-8uM">
-                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                </segue>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem style="plain" systemItem="edit" id="xBc-Va-JWl">
+                                <connections>
+                                    <segue destination="z9S-oP-CKX" kind="popoverPresentation" identifier="EditCourseworkSegue" popoverAnchorBarButtonItem="xBc-Va-JWl" id="itc-Fb-8uM">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Reminder" style="plain" id="66d-s2-krg">
+                                <connections>
+                                    <segue destination="5rb-Y9-XtB" kind="popoverPresentation" identifier="SetCalendarReminderSegue" popoverAnchorBarButtonItem="66d-s2-krg" id="Ju8-L5-9IN">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="buttonEdit" destination="xBc-Va-JWl" id="4Sp-Bd-ni2"/>
+                        <outlet property="buttonReminder" destination="66d-s2-krg" id="UTc-nQ-zK7"/>
                         <outlet property="courseworkDaysLeft" destination="L0X-eG-3Pz" id="eA3-NO-TH6"/>
                         <outlet property="courseworkLevel" destination="RTr-AH-zMq" id="xQA-rs-PhH"/>
                         <outlet property="courseworkMark" destination="DTh-Qv-zr2" id="gBr-am-Z0n"/>
@@ -480,19 +503,19 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Fm-ma-5xu">
                                         <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Coursework Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TEx-vE-xjk">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Coursework Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="TEx-vE-xjk">
                                                 <rect key="frame" x="20" y="20" width="360" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Module Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RBM-Jh-BMk">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Module Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="RBM-Jh-BMk">
                                                 <rect key="frame" x="20" y="58" width="258" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Level" textAlignment="justified" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dch-l3-7U7">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Level" textAlignment="justified" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Dch-l3-7U7">
                                                 <rect key="frame" x="286" y="58" width="94" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="94" id="Itg-SQ-kVE"/>
@@ -501,7 +524,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Due Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q9e-JF-0R4">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Due Date" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="q9e-JF-0R4">
                                                 <rect key="frame" x="20" y="96" width="258" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -510,7 +533,7 @@
                                                     <action selector="didClickDueDate:" destination="z9S-oP-CKX" eventType="editingDidBegin" id="1Po-Be-uds"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="% Weight" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="91m-OI-PBX">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="% Weight" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="91m-OI-PBX">
                                                 <rect key="frame" x="286" y="96" width="94" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -623,6 +646,71 @@
             </objects>
             <point key="canvasLocation" x="1251" y="-252"/>
         </scene>
+        <!--Add Reminder View Controller-->
+        <scene sceneID="r1t-hT-mTh">
+            <objects>
+                <viewController id="5rb-Y9-XtB" customClass="AddReminderViewController" customModule="iPlanner" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gIU-5a-Fpo">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="200"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Reminder" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="iso-ze-Vqv">
+                                <rect key="frame" x="20" y="40" width="360" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Szr-LV-lvI">
+                                <rect key="frame" x="20" y="78" width="360" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="didClickDateField:" destination="5rb-Y9-XtB" eventType="editingDidBegin" id="rJl-vb-QQ2"/>
+                                </connections>
+                            </textField>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PBk-OO-Xq5">
+                                <rect key="frame" x="0.0" y="156" width="400" height="44"/>
+                                <items>
+                                    <barButtonItem systemItem="cancel" id="9Lw-5i-wvq">
+                                        <color key="tintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="didClickCancel:" destination="5rb-Y9-XtB" id="Ivm-k5-6yV"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="save" id="De4-rr-KNE">
+                                        <connections>
+                                            <action selector="didClickSave:" destination="5rb-Y9-XtB" id="zmw-dJ-hF4"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="PBk-OO-Xq5" firstAttribute="bottom" secondItem="jr6-or-naS" secondAttribute="bottom" id="1KJ-fR-z33"/>
+                            <constraint firstItem="PBk-OO-Xq5" firstAttribute="leading" secondItem="gIU-5a-Fpo" secondAttribute="leading" id="7Ly-7g-z7E"/>
+                            <constraint firstItem="Szr-LV-lvI" firstAttribute="trailing" secondItem="iso-ze-Vqv" secondAttribute="trailing" id="ALd-8d-9uu"/>
+                            <constraint firstItem="Szr-LV-lvI" firstAttribute="top" secondItem="iso-ze-Vqv" secondAttribute="bottom" constant="8" symbolic="YES" id="DNl-LE-Lar"/>
+                            <constraint firstItem="jr6-or-naS" firstAttribute="trailing" secondItem="iso-ze-Vqv" secondAttribute="trailing" constant="20" id="IBM-KP-cQL"/>
+                            <constraint firstItem="iso-ze-Vqv" firstAttribute="top" secondItem="jr6-or-naS" secondAttribute="top" constant="20" id="LAv-ki-De7"/>
+                            <constraint firstItem="Szr-LV-lvI" firstAttribute="leading" secondItem="iso-ze-Vqv" secondAttribute="leading" id="fGt-hS-gvH"/>
+                            <constraint firstItem="Szr-LV-lvI" firstAttribute="centerX" secondItem="PBk-OO-Xq5" secondAttribute="centerX" id="ima-5H-Orn"/>
+                            <constraint firstItem="iso-ze-Vqv" firstAttribute="leading" secondItem="jr6-or-naS" secondAttribute="leading" constant="20" id="rWU-KP-SSA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="jr6-or-naS"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="400" height="200"/>
+                    <connections>
+                        <outlet property="dateText" destination="Szr-LV-lvI" id="ahn-Nu-OBb"/>
+                        <outlet property="reminderText" destination="iso-ze-Vqv" id="Iao-n0-Ksj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="03o-DN-Fw3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1250.7194244604316" y="146.76258992805757"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="r7l-gg-dq7">
             <objects>
@@ -645,6 +733,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="6S0-TO-JiA"/>
+        <segue reference="okp-XI-d8A"/>
         <segue reference="itc-Fb-8uM"/>
     </inferredMetricsTieBreakers>
 </document>

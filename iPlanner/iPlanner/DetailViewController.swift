@@ -12,6 +12,8 @@ import CoreData
 class DetailViewController: UIViewController, AddCourseworkDelegate {
     
     var managedObjectContext: NSManagedObjectContext?
+    @IBOutlet weak var buttonReminder: UIBarButtonItem!
+    @IBOutlet weak var buttonEdit: UIBarButtonItem!
     
     func saveData(name: String, module: String, dueDate: Date, level: Int32, weight: Int32, mark: Int32, notes: String) {
         courseworkItem?.setValue(name, forKey: "name")
@@ -45,9 +47,15 @@ class DetailViewController: UIViewController, AddCourseworkDelegate {
             let controller = segue.destination as! AddCourseworkViewController
             controller.coursework = courseworkItem
             controller.delegate = self
+        } else if segue.identifier == "SetCalendarReminderSegue" {
+            let controller = segue.destination as! AddReminderViewController
+            controller.isInternalNotification = false
+        } else if segue.identifier == "SetInternalReminderSegue" {
+            let controller = segue.destination as! AddReminderViewController
+            controller.isInternalNotification = true
         }
     }
-    
+
     func configureView() {
         if let coursework = courseworkItem {
             self.title = coursework.name
@@ -70,11 +78,14 @@ class DetailViewController: UIViewController, AddCourseworkDelegate {
             let firstView = view.viewWithTag(1),
             let secondView = view.viewWithTag(2),
             let thirdView = view.viewWithTag(3),
-            let fourthView = view.viewWithTag(4) {
+            let fourthView = view.viewWithTag(4),
+            let buttonColor = isHidden ? UIColor.clear as UIColor? : UIColor.magenta as UIColor? {
             firstView.isHidden = isHidden
             secondView.isHidden = isHidden
             thirdView.isHidden = isHidden
             fourthView.isHidden = isHidden
+            buttonEdit.tintColor = buttonColor
+            buttonReminder.tintColor = buttonColor
         }
     }
     
