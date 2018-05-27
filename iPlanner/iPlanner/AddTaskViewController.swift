@@ -16,6 +16,7 @@ protocol AddTaskViewDelegate {
 class AddTaskViewController: UIViewController {
     
     var delegate: AddTaskViewDelegate?
+    var coursework: Coursework?
     @IBOutlet weak var fieldTaskName: UITextField?
     @IBOutlet weak var fieldStartDate: UITextField?
     @IBOutlet weak var fieldDueDate: UITextField?
@@ -31,6 +32,7 @@ class AddTaskViewController: UIViewController {
         let datePickerView:UIDatePicker = UIDatePicker()
         datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
         datePickerView.minimumDate = Date()
+        datePickerView.maximumDate = coursework?.dueDate
         fieldStartDate?.inputView = datePickerView
         datePickerView.addTarget(self, action: #selector(AddTaskViewController.startDateChanged), for: UIControlEvents.valueChanged)
     }
@@ -39,6 +41,7 @@ class AddTaskViewController: UIViewController {
         let datePickerView:UIDatePicker = UIDatePicker()
         datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
         datePickerView.minimumDate = Date()
+        datePickerView.maximumDate = coursework?.dueDate
         fieldDueDate?.inputView = datePickerView
         datePickerView.addTarget(self, action: #selector(AddTaskViewController.dueDateChanged), for: UIControlEvents.valueChanged)
     }

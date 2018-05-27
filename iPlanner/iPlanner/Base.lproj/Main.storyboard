@@ -247,7 +247,7 @@
                                                                                             <rect key="frame" x="0.0" y="0.0" width="444" height="51"/>
                                                                                             <subviews>
                                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ryY-x5-P2M">
-                                                                                                    <rect key="frame" x="8" y="8" width="428" height="35"/>
+                                                                                                    <rect key="frame" x="15" y="15" width="421" height="28"/>
                                                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                                     <nil key="textColor"/>
                                                                                                     <nil key="highlightedColor"/>
@@ -259,6 +259,8 @@
                                                                                                 <constraint firstItem="ryY-x5-P2M" firstAttribute="bottom" secondItem="OEt-T0-jno" secondAttribute="bottomMargin" id="Wzf-Nz-wTv"/>
                                                                                                 <constraint firstItem="ryY-x5-P2M" firstAttribute="leading" secondItem="OEt-T0-jno" secondAttribute="leadingMargin" id="dWe-gj-eJw"/>
                                                                                                 <constraint firstItem="ryY-x5-P2M" firstAttribute="top" secondItem="OEt-T0-jno" secondAttribute="topMargin" id="hDS-E3-Py8"/>
+                                                                                                <constraint firstItem="ryY-x5-P2M" firstAttribute="leading" secondItem="OEt-T0-jno" secondAttribute="leading" constant="15" id="usJ-0y-bgO"/>
+                                                                                                <constraint firstItem="ryY-x5-P2M" firstAttribute="top" secondItem="OEt-T0-jno" secondAttribute="top" constant="15" id="wTY-hJ-ikf"/>
                                                                                             </constraints>
                                                                                         </view>
                                                                                     </subviews>
@@ -279,7 +281,7 @@
                                                                                             <rect key="frame" x="0.0" y="0.0" width="444" height="54"/>
                                                                                             <subviews>
                                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="9x9-oa-jak">
-                                                                                                    <rect key="frame" x="8" y="8" width="428" height="38"/>
+                                                                                                    <rect key="frame" x="15" y="8" width="421" height="31"/>
                                                                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                                                     <nil key="textColor"/>
                                                                                                     <nil key="highlightedColor"/>
@@ -289,6 +291,8 @@
                                                                                             <constraints>
                                                                                                 <constraint firstItem="9x9-oa-jak" firstAttribute="top" secondItem="rSj-Uo-WZH" secondAttribute="topMargin" id="0SU-k8-6LI"/>
                                                                                                 <constraint firstItem="9x9-oa-jak" firstAttribute="trailing" secondItem="rSj-Uo-WZH" secondAttribute="trailingMargin" id="AX7-bp-oRW"/>
+                                                                                                <constraint firstAttribute="bottom" secondItem="9x9-oa-jak" secondAttribute="bottom" constant="15" id="Ei0-is-eoq"/>
+                                                                                                <constraint firstItem="9x9-oa-jak" firstAttribute="leading" secondItem="rSj-Uo-WZH" secondAttribute="leading" constant="15" id="RIj-Le-Pwg"/>
                                                                                                 <constraint firstItem="9x9-oa-jak" firstAttribute="leading" secondItem="rSj-Uo-WZH" secondAttribute="leadingMargin" id="VOQ-lU-yUY"/>
                                                                                                 <constraint firstItem="9x9-oa-jak" firstAttribute="bottom" secondItem="rSj-Uo-WZH" secondAttribute="bottomMargin" id="nO8-Cp-wXq"/>
                                                                                             </constraints>
@@ -350,7 +354,7 @@
                                                                                             <rect key="frame" x="0.0" y="0.0" width="224" height="60"/>
                                                                                             <subviews>
                                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Completed Percentage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AbR-u4-WX7">
-                                                                                                    <rect key="frame" x="8" y="8" width="208" height="44"/>
+                                                                                                    <rect key="frame" x="8" y="5" width="208" height="20.5"/>
                                                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                                     <color key="textColor" red="0.66799789669999998" green="0.47512125970000002" blue="0.25860109930000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                     <nil key="highlightedColor"/>
@@ -361,7 +365,7 @@
                                                                                                 <constraint firstItem="AbR-u4-WX7" firstAttribute="trailing" secondItem="zWH-yh-8Du" secondAttribute="trailingMargin" id="4iE-if-YDX"/>
                                                                                                 <constraint firstItem="AbR-u4-WX7" firstAttribute="leading" secondItem="zWH-yh-8Du" secondAttribute="leadingMargin" id="CXa-l7-Njw"/>
                                                                                                 <constraint firstItem="AbR-u4-WX7" firstAttribute="top" secondItem="zWH-yh-8Du" secondAttribute="topMargin" id="MbF-kM-Rfx"/>
-                                                                                                <constraint firstItem="AbR-u4-WX7" firstAttribute="bottom" secondItem="zWH-yh-8Du" secondAttribute="bottomMargin" id="ezW-5b-VT7"/>
+                                                                                                <constraint firstItem="AbR-u4-WX7" firstAttribute="top" secondItem="zWH-yh-8Du" secondAttribute="top" constant="5" id="pDO-DI-K9Y"/>
                                                                                             </constraints>
                                                                                         </view>
                                                                                     </subviews>

@@ -73,7 +73,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
             cell.countdown.text = "0d " + String(diffInHours) + "h"
         } else {
             let diffInDays = Calendar.current.dateComponents([.day], from: task.startDate!, to: task.dueDate!).day!
-            let diffInHours = Calendar.current.dateComponents([.hour], from: Calendar.current.startOfDay(for: task.startDate!), to: task.dueDate!).hour!
+            let diffInHours = Calendar.current.dateComponents([.hour], from: Calendar.current.startOfDay(for: task.dueDate!), to: task.dueDate!).hour!
             cell.countdown.text = String(diffInDays) + "d " + String(diffInHours) + "h"
         }
     }
@@ -144,6 +144,7 @@ class DetailViewController: UIViewController, AddCourseworkDelegate, NSFetchedRe
         } else if segue.identifier == "AddTaskSegue" {
             let controller = segue.destination as! AddTaskViewController
             controller.delegate = self
+            controller.coursework = courseworkItem
             controller.preferredContentSize = CGSize(width: 400, height: 250)
         }
     }
