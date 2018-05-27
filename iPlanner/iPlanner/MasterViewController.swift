@@ -16,6 +16,7 @@ class CourseworkTableViewCell: UITableViewCell {
     @IBOutlet weak var level: UILabel!
     @IBOutlet weak var dueDate: UILabel!
     @IBOutlet weak var countdown: UILabel!
+    @IBOutlet weak var mark: UILabel!
 }
 
 class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate, AddCourseworkDelegate {
@@ -132,11 +133,12 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         cell.moduleName.text = coursework.moduleId
         cell.level.text = String(coursework.level)
         cell.weight.text = String(coursework.weight)
+        cell.mark.text = "Mark: " + String(coursework.mark) + "/100"
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .short
-        cell.dueDate.text = dateFormatter.string(from: coursework.dueDate!)
+        cell.dueDate.text = "Due on: " + dateFormatter.string(from: coursework.dueDate!)
         
         if (Calendar.current.dateComponents([.hour], from: Date(), to: coursework.dueDate!).hour! < 0) {
             cell.countdown.text = "Date Passed"
