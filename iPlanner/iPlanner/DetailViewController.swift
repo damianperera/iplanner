@@ -35,6 +35,10 @@ class DetailViewController: UIViewController, AddCourseworkDelegate, AddTaskView
         } else if segue.identifier == "SetInternalReminderSegue" {
             let controller = segue.destination as! AddReminderViewController
             controller.preferredContentSize = CGSize(width: 400, height: 150)
+        } else if segue.identifier == "AddTaskSegue" {
+            let controller = segue.destination as! AddTaskViewController
+            controller.delegate = self
+            controller.preferredContentSize = CGSize(width: 400, height: 300)
         }
     }
     

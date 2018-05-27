@@ -43,7 +43,7 @@ class AddCourseworkViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func didPickerValueChanged(_ sender: UISlider) {
-        markLabel?.text = String(Int(sender.value))
+        markLabel?.text = String(Int(sender.value)) + "/100"
     }
     
     @IBAction func didClickDueDate(_ sender: UITextField) {
@@ -65,7 +65,7 @@ class AddCourseworkViewController: UIViewController, UITextFieldDelegate {
             let dueDate = dueDateField?.text, !dueDate.isEmpty,
             let level = levelField?.text, !level.isEmpty,
             let weight = overallWeightField?.text, !weight.isEmpty,
-            let mark = markLabel?.text, !mark.isEmpty,
+            let mark = String(Int((finalMarkField?.value)!)) as String?, !mark.isEmpty,
             let notes = notesField?.text, !notes.isEmpty,
             self.delegate != nil
         else {
@@ -97,7 +97,7 @@ class AddCourseworkViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         guard self.coursework != nil
         else {
-            markLabel?.text = "30"
+            markLabel?.text = "30/100"
             return
         }
         setFieldsFromObject()
