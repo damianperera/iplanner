@@ -7,8 +7,30 @@
 //
 
 import UIKit
+import CoreData
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, AddCourseworkDelegate {
+    
+    var managedObjectContext: NSManagedObjectContext?
+    
+    func saveData(name: String, module: String, dueDate: Date, level: Int32, weight: Int32, mark: Int32, notes: String) {
+        courseworkItem?.setValue(name, forKey: "name")
+        courseworkItem?.setValue(module, forKey: "moduleId")
+        courseworkItem?.setValue(dueDate, forKey: "dueDate")
+        courseworkItem?.setValue(level, forKey: "level")
+        courseworkItem?.setValue(weight, forKey: "weight")
+        courseworkItem?.setValue(mark, forKey: "mark")
+        courseworkItem?.setValue(notes, forKey: "notes")
+
+        do {
+            try self.managedObjectContext?.save()
+        } catch {
+            let saveError = error as NSError
+            print("\(saveError), \(saveError.userInfo)")
+        }
+        
+        configureView()
+    }
 
     @IBOutlet weak var courseworkDaysLeft: UILabel?
     @IBOutlet weak var courseworkModuleName: UILabel?
@@ -17,6 +39,14 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var courseworkLevel: UILabel?
     @IBOutlet weak var courseworkMark: UILabel?
     @IBOutlet weak var courseworkProgressText: UILabel?
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "EditCourseworkSegue" {
+            let controller = segue.destination as! AddCourseworkViewController
+            controller.coursework = courseworkItem
+            controller.delegate = self
+        }
+    }
     
     func configureView() {
         if let coursework = courseworkItem {
