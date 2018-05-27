@@ -21,6 +21,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let tasks = courseworkItem?.tasks?.array as! [Task]
         selectedTask = tasks[indexPath.row]
+        selectedTaskID = indexPath.row
         performSegue(withIdentifier: "EditTaskSegue", sender: self)
     }
     
@@ -122,6 +123,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
 class DetailViewController: UIViewController, AddCourseworkDelegate, NSFetchedResultsControllerDelegate, AddTaskViewDelegate {
     
     var selectedTask:Task?
+    var selectedTaskID:Int?
     var _fetchedResultsController: NSFetchedResultsController<Task>? = nil
     var managedObjectContext: NSManagedObjectContext?
     @IBOutlet weak var buttonReminder: UIBarButtonItem!
@@ -157,6 +159,8 @@ class DetailViewController: UIViewController, AddCourseworkDelegate, NSFetchedRe
             let controller = segue.destination as! AddTaskViewController
             controller.delegate = self
             controller.task = selectedTask
+            controller.taskID = selectedTaskID
+            controller.isEdit = true
             controller.preferredContentSize = CGSize(width: 400, height: 250)
         }
     }
@@ -190,6 +194,26 @@ class DetailViewController: UIViewController, AddCourseworkDelegate, NSFetchedRe
         newTask.notes = notes
         
         courseworkItem?.addToTasks(newTask)
+        do {
+            try self.managedObjectContext?.save()
+        } catch {
+            let saveError = error as NSError
+            print("\(saveError), \(saveError.userInfo)")
+        }
+        
+        tableView.reloadData()
+    }
+    
+    func saveEditedData(taskName: String, startDate: Date, dueDate: Date, complete: Int32, notes: String, taskID: Int) {
+        let context = managedObjectContext
+        let newTask = Task(context: context!)
+        newTask.name = taskName
+        newTask.startDate = startDate
+        newTask.dueDate = dueDate
+        newTask.completed = complete
+        newTask.notes = notes
+        
+        courseworkItem?.replaceTasks(at: taskID, with: newTask)
         do {
             try self.managedObjectContext?.save()
         } catch {
