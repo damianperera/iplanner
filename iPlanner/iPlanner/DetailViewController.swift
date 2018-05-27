@@ -9,30 +9,11 @@
 import UIKit
 import CoreData
 
-class DetailViewController: UIViewController, AddCourseworkDelegate {
+class DetailViewController: UIViewController, AddCourseworkDelegate, AddTaskViewDelegate {
     
     var managedObjectContext: NSManagedObjectContext?
     @IBOutlet weak var buttonReminder: UIBarButtonItem!
     @IBOutlet weak var buttonEdit: UIBarButtonItem!
-    
-    func saveData(name: String, module: String, dueDate: Date, level: Int32, weight: Int32, mark: Int32, notes: String) {
-        courseworkItem?.setValue(name, forKey: "name")
-        courseworkItem?.setValue(module, forKey: "moduleId")
-        courseworkItem?.setValue(dueDate, forKey: "dueDate")
-        courseworkItem?.setValue(level, forKey: "level")
-        courseworkItem?.setValue(weight, forKey: "weight")
-        courseworkItem?.setValue(mark, forKey: "mark")
-        courseworkItem?.setValue(notes, forKey: "notes")
-
-        do {
-            try self.managedObjectContext?.save()
-        } catch {
-            let saveError = error as NSError
-            print("\(saveError), \(saveError.userInfo)")
-        }
-        
-        configureView()
-    }
 
     @IBOutlet weak var courseworkDaysLeft: UILabel?
     @IBOutlet weak var courseworkModuleName: UILabel?
@@ -55,6 +36,29 @@ class DetailViewController: UIViewController, AddCourseworkDelegate {
             let controller = segue.destination as! AddReminderViewController
             controller.preferredContentSize = CGSize(width: 400, height: 150)
         }
+    }
+    
+    func saveData(name: String, module: String, dueDate: Date, level: Int32, weight: Int32, mark: Int32, notes: String) {
+        courseworkItem?.setValue(name, forKey: "name")
+        courseworkItem?.setValue(module, forKey: "moduleId")
+        courseworkItem?.setValue(dueDate, forKey: "dueDate")
+        courseworkItem?.setValue(level, forKey: "level")
+        courseworkItem?.setValue(weight, forKey: "weight")
+        courseworkItem?.setValue(mark, forKey: "mark")
+        courseworkItem?.setValue(notes, forKey: "notes")
+        
+        do {
+            try self.managedObjectContext?.save()
+        } catch {
+            let saveError = error as NSError
+            print("\(saveError), \(saveError.userInfo)")
+        }
+        
+        configureView()
+    }
+    
+    func saveData(taskName: String, startDate: Date, dueDate: Date, complete: Int32, notes: String) {
+        print(taskName, startDate, dueDate, complete, notes)
     }
 
     func configureView() {

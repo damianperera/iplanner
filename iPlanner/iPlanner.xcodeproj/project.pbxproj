@@ -17,6 +17,7 @@
 		B3DD8D2D20B9963100B78493 /* AddCourseworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DD8D2C20B9963100B78493 /* AddCourseworkViewController.swift */; };
 		B3DD8D3020BA794200B78493 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3DD8D2F20BA794200B78493 /* EventKit.framework */; };
 		B3DD8D3220BA7B6600B78493 /* AddReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DD8D3120BA7B6600B78493 /* AddReminderViewController.swift */; };
+		B3DD8D3420BA8D3000B78493 /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DD8D3320BA8D3000B78493 /* AddTaskViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		B3DD8D2C20B9963100B78493 /* AddCourseworkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseworkViewController.swift; sourceTree = "<group>"; };
 		B3DD8D2F20BA794200B78493 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		B3DD8D3120BA7B6600B78493 /* AddReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReminderViewController.swift; sourceTree = "<group>"; };
+		B3DD8D3320BA8D3000B78493 /* AddTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				B35C60E120A717F900E48F44 /* MasterViewController.swift */,
 				B3DD8D2C20B9963100B78493 /* AddCourseworkViewController.swift */,
 				B3DD8D3120BA7B6600B78493 /* AddReminderViewController.swift */,
+				B3DD8D3320BA8D3000B78493 /* AddTaskViewController.swift */,
 				B35C60E320A717F900E48F44 /* DetailViewController.swift */,
 				B35C60E520A717F900E48F44 /* Main.storyboard */,
 				B35C60E820A717FB00E48F44 /* Assets.xcassets */,
@@ -165,6 +168,7 @@
 				B35C60E420A717F900E48F44 /* DetailViewController.swift in Sources */,
 				B3DD8D3220BA7B6600B78493 /* AddReminderViewController.swift in Sources */,
 				B3DD8D2920B961DA00B78493 /* iPlanner.xcdatamodeld in Sources */,
+				B3DD8D3420BA8D3000B78493 /* AddTaskViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
