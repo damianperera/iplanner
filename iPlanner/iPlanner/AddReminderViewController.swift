@@ -13,7 +13,6 @@ import EventKit
 class AddReminderViewController: UIViewController {
     
     var store = EKEventStore()
-    var isInternalNotification:Bool = false
     @IBOutlet weak var reminderText: UITextField!
     @IBOutlet weak var dateText: UITextField!
     
@@ -65,11 +64,7 @@ class AddReminderViewController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .short
-        if isInternalNotification {
-            
-        } else {
-            addCalendarReminder(title: reminderText.text!, atDate: dateFormatter.date(from: dateText.text!)!)
-        }
+        addCalendarReminder(title: reminderText.text!, atDate: dateFormatter.date(from: dateText.text!)!)
         dismiss(animated: true, completion: nil)
     }
     
