@@ -241,7 +241,7 @@ class DetailViewController: UIViewController, AddCourseworkDelegate, NSFetchedRe
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 100
+        tableView.estimatedRowHeight = 90
         configureView()
     }
 
