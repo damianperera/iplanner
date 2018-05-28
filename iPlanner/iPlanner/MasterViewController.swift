@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 class CourseworkTableViewCell: UITableViewCell {
     @IBOutlet weak var courseworkName: UILabel!
@@ -19,11 +20,43 @@ class CourseworkTableViewCell: UITableViewCell {
     @IBOutlet weak var mark: UILabel!
 }
 
-class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate, AddCourseworkDelegate {
+class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate, AddCourseworkDelegate, UNUserNotificationCenterDelegate {
 
     var detailViewController: DetailViewController? = nil
     var managedObjectContext: NSManagedObjectContext? = nil
 
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .sound])
+    }
+    
+    func triggerWaitingNotifications(forCoursework coursework:Coursework) {
+        let tasks = coursework.tasks?.array as! [Task]
+        for task in tasks {
+            if task.notification {
+                let diffInMinutes = Calendar.current.dateComponents([.minute], from: Date(), to: task.dueDate!).minute!
+                if diffInMinutes <= 5 {
+                    showNotification(forTask: task)
+                }
+            }
+        }
+    }
+    
+    func showNotification(forTask task:Task) {
+        let notification = UNMutableNotificationContent()
+        notification.title = "Task Due!"
+        notification.subtitle = task.name!
+        notification.body = task.notes!
+        notification.categoryIdentifier = "TaskCategory"
+        
+        let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 2, repeats: false)
+        let notificationIdentifier = "TaskDue"
+        let notificationRequest = UNNotificationRequest(identifier: notificationIdentifier, content: notification, trigger: notificationTrigger)
+        
+        UNUserNotificationCenter.current().add(notificationRequest) { (error) in
+            print(error as Any)
+        }
+    }
+    
     func saveData(name: String, module: String, dueDate: Date, level: Int32, weight: Int32, mark: Int32, notes: String) {
         let context = self.fetchedResultsController.managedObjectContext
         let newCoursework = Coursework(context: context)
@@ -59,6 +92,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             let controllers = split.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
+        UNUserNotificationCenter.current().delegate = self
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -153,6 +187,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         }
         
         addTaskProgress(forCoursework: coursework, for: cell.mark)
+        triggerWaitingNotifications(forCoursework: coursework)
     }
     
     func addTaskProgress(forCoursework: Coursework, for view:UILabel) {
