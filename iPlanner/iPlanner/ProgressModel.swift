@@ -29,6 +29,7 @@ class ProgressModel {
         let totalDays = Calendar.current.dateComponents([.day], from: coursework.setDate!, to: coursework.dueDate!).day!
         let daysRemaining = Calendar.current.dateComponents([.day], from: Date(), to: coursework.dueDate!).day!
         let percentageOfDaysRemaining = daysRemaining/totalDays
+        
         dateCountdown.showPercentage = false
         dateCountdown.progressRingWidth = CGFloat(15.0)
         dateCountdown.numberOfSegments = totalDays

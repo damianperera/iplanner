@@ -137,6 +137,9 @@ class DetailViewController: UIViewController, AddCourseworkDelegate, NSFetchedRe
     func saveData(name: String, module: String, dueDate: Date, level: Int32, weight: Int32, mark: Int32, notes: String) {
         courseworkItem?.setValue(name, forKey: "name")
         courseworkItem?.setValue(module, forKey: "moduleId")
+        if dueDate != courseworkItem?.dueDate {
+            courseworkItem?.setValue(Date(), forKey: "setDate")
+        }
         courseworkItem?.setValue(dueDate, forKey: "dueDate")
         courseworkItem?.setValue(level, forKey: "level")
         courseworkItem?.setValue(weight, forKey: "weight")
@@ -219,9 +222,15 @@ class DetailViewController: UIViewController, AddCourseworkDelegate, NSFetchedRe
     }
     
     func setProgressView(coursework: Coursework, daysRemaining: Float, taskCompleteProgress: Float) {
+        if let daysLeft = courseworkDaysLeft {
+            removeSubViews(forView: daysLeft)
+        }
         let dateFrame = CGRect(x: -25.0, y: -60.0, width: 150.0, height: 150.0)
         courseworkDaysLeft?.addSubview(ProgressModel().getDateCountdown(ofCoursework: coursework, forFrame: dateFrame))
         
+        if let weight = courseworkWeight {
+            removeSubViews(forView: weight)
+        }
         let taskFrame = CGRect(x: -68.0, y: 20.0, width: 250.0, height: 20.0)
         courseworkWeight?.addSubview(ProgressModel().getBarProgressOfTasks(ofCoursework: coursework, forFrame: taskFrame))
     }
