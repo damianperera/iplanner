@@ -162,13 +162,14 @@ class DetailViewController: UIViewController, AddCourseworkDelegate, NSFetchedRe
         }
     }
     
-    func saveData(taskName: String, startDate: Date, dueDate: Date, complete: Int32, notes: String) {
+    func saveData(taskName: String, startDate: Date, dueDate: Date, complete: Int32, notes: String, notification: Bool) {
         let context = managedObjectContext
         let newTask = Task(context: context!)
         newTask.name = taskName
         newTask.startDate = startDate
         newTask.dueDate = dueDate
         newTask.completed = complete
+        newTask.notification = notification
         newTask.notes = notes
         
         courseworkItem?.addToTasks(newTask)
@@ -183,7 +184,7 @@ class DetailViewController: UIViewController, AddCourseworkDelegate, NSFetchedRe
         configureView()
     }
     
-    func saveEditedData(taskName: String, startDate: Date, dueDate: Date, complete: Int32, notes: String, taskID: Int) {
+    func saveEditedData(taskName: String, startDate: Date, dueDate: Date, complete: Int32, notes: String, notification: Bool, taskID: Int) {
         let context = managedObjectContext
         let newTask = Task(context: context!)
         newTask.name = taskName
@@ -191,6 +192,7 @@ class DetailViewController: UIViewController, AddCourseworkDelegate, NSFetchedRe
         newTask.dueDate = dueDate
         newTask.completed = complete
         newTask.notes = notes
+        newTask.notification = notification
         
         courseworkItem?.replaceTasks(at: taskID, with: newTask)
         do {

@@ -15,6 +15,7 @@
 		B35C60E720A717F900E48F44 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B35C60E520A717F900E48F44 /* Main.storyboard */; };
 		B35C60E920A717FB00E48F44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B35C60E820A717FB00E48F44 /* Assets.xcassets */; };
 		B35C60EC20A717FB00E48F44 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B35C60EA20A717FB00E48F44 /* LaunchScreen.storyboard */; };
+		B398A89020BCA86D00B74633 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B398A88F20BCA86D00B74633 /* UserNotifications.framework */; };
 		B3DD8D2920B961DA00B78493 /* iPlanner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B3DD8D2720B961DA00B78493 /* iPlanner.xcdatamodeld */; };
 		B3DD8D2D20B9963100B78493 /* AddCourseworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DD8D2C20B9963100B78493 /* AddCourseworkViewController.swift */; };
 		B3DD8D3020BA794200B78493 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3DD8D2F20BA794200B78493 /* EventKit.framework */; };
@@ -33,6 +34,7 @@
 		B35C60E820A717FB00E48F44 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B35C60EB20A717FB00E48F44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B35C60ED20A717FB00E48F44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B398A88F20BCA86D00B74633 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		B3DD8D2820B961DA00B78493 /* iPlanner.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iPlanner.xcdatamodel; sourceTree = "<group>"; };
 		B3DD8D2C20B9963100B78493 /* AddCourseworkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseworkViewController.swift; sourceTree = "<group>"; };
 		B3DD8D2F20BA794200B78493 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
@@ -47,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B398A89020BCA86D00B74633 /* UserNotifications.framework in Frameworks */,
 				B3DD8D3020BA794200B78493 /* EventKit.framework in Frameworks */,
 				40DD8EDA78211E2DBC36488D /* Pods_iPlanner.framework in Frameworks */,
 			);
@@ -104,6 +107,7 @@
 		B3DD8D2E20BA794100B78493 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B398A88F20BCA86D00B74633 /* UserNotifications.framework */,
 				B3DD8D2F20BA794200B78493 /* EventKit.framework */,
 				CD642178637E1DD1F0F4E6BA /* Pods_iPlanner.framework */,
 			);

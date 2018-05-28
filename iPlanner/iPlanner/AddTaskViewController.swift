@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 protocol AddTaskViewDelegate {
-    func saveData(taskName: String, startDate: Date, dueDate: Date, complete: Int32, notes: String)
-    func saveEditedData(taskName: String, startDate: Date, dueDate: Date, complete: Int32, notes: String, taskID: Int)
+    func saveData(taskName: String, startDate: Date, dueDate: Date, complete: Int32, notes: String, notification: Bool)
+    func saveEditedData(taskName: String, startDate: Date, dueDate: Date, complete: Int32, notes: String, notification: Bool, taskID: Int)
 }
 
 class AddTaskViewController: UIViewController {
@@ -27,6 +27,7 @@ class AddTaskViewController: UIViewController {
     @IBOutlet weak var sliderComplete: UISlider?
     @IBOutlet weak var labelComplete: UILabel?
     @IBOutlet weak var fieldNotes: UITextView?
+    @IBOutlet weak var switchNotification: UISwitch?
     
     @IBAction func didSliderValueChanged(_ sender: UISlider) {
         labelComplete?.text = String(Int(sender.value)) + "% Complete"
@@ -60,6 +61,7 @@ class AddTaskViewController: UIViewController {
             let startDate = fieldStartDate?.text, !startDate.isEmpty,
             let dueDate = fieldDueDate?.text, !dueDate.isEmpty,
             let complete = String(Int((sliderComplete?.value)!)) as String?, !complete.isEmpty,
+            let notification = switchNotification?.isOn,
             let notes = fieldNotes?.text, !notes.isEmpty,
             self.delegate != nil
             else {
@@ -76,6 +78,7 @@ class AddTaskViewController: UIViewController {
                 dueDate: dateFormatter.date(from: dueDate)!,
                 complete: Int32(complete)!,
                 notes: notes,
+                notification: notification,
                 taskID: taskID!)
         } else {
             delegate?.saveData(
@@ -83,7 +86,8 @@ class AddTaskViewController: UIViewController {
                 startDate: dateFormatter.date(from: startDate)!,
                 dueDate: dateFormatter.date(from: dueDate)!,
                 complete: Int32(complete)!,
-                notes: notes)
+                notes: notes,
+                notification: notification)
         }
         dismiss(animated: true, completion: nil)
     }
@@ -113,6 +117,7 @@ class AddTaskViewController: UIViewController {
             sliderComplete?.value = Float(selectedTask.completed)
             labelComplete?.text = String(selectedTask.completed) + "% Complete"
             fieldNotes?.text = selectedTask.notes
+            switchNotification?.isOn = selectedTask.notification
         }
     }
     

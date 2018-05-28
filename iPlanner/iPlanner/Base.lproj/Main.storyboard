@@ -809,7 +809,7 @@
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </switch>
                                                     </barButtonItem>
-                                                    <barButtonItem enabled="NO" title="Completion reminder" width="410" id="XE0-Ds-dKx">
+                                                    <barButtonItem enabled="NO" title="Completion Reminder" width="410" id="XE0-Ds-dKx">
                                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </barButtonItem>
                                                     <barButtonItem enabled="NO" id="Hz6-Kk-YQH"/>
@@ -884,6 +884,7 @@
                         <outlet property="fieldTaskName" destination="jK6-tS-c4m" id="wU0-8j-jPv"/>
                         <outlet property="labelComplete" destination="cNY-ex-Szf" id="UOh-A7-iQj"/>
                         <outlet property="sliderComplete" destination="7fO-eG-tOw" id="EPt-A4-rQY"/>
+                        <outlet property="switchNotification" destination="O4D-0D-EpD" id="7na-0g-0Ku"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OI2-ke-5h6" userLabel="First Responder" sceneMemberID="firstResponder"/>

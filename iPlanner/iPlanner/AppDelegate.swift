@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
@@ -25,6 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         let masterNavigationController = splitViewController.viewControllers[0] as! UINavigationController
         let controller = masterNavigationController.topViewController as! MasterViewController
         controller.managedObjectContext = self.persistentContainer.viewContext
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound], completionHandler: {(perminssionGranted, error) in print(error as Any)})
+        
         return true
     }
 
