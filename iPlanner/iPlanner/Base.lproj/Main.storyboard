@@ -276,22 +276,13 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="792" height="44"/>
                                                 <items>
                                                     <navigationItem title="Tasks" id="ibu-NA-9KL">
-                                                        <rightBarButtonItems>
-                                                            <barButtonItem style="plain" systemItem="add" id="oYD-rA-ilN">
-                                                                <connections>
-                                                                    <segue destination="1VY-jq-cje" kind="popoverPresentation" identifier="AddTaskSegue" popoverAnchorBarButtonItem="oYD-rA-ilN" id="2Kk-uq-DMY">
-                                                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                                                    </segue>
-                                                                </connections>
-                                                            </barButtonItem>
-                                                            <barButtonItem title="Reminder" style="plain" id="GQJ-Jt-TRo">
-                                                                <connections>
-                                                                    <segue destination="5rb-Y9-XtB" kind="popoverPresentation" identifier="SetInternalReminderSegue" popoverAnchorBarButtonItem="GQJ-Jt-TRo" id="okp-XI-d8A">
-                                                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                                                    </segue>
-                                                                </connections>
-                                                            </barButtonItem>
-                                                        </rightBarButtonItems>
+                                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="oYD-rA-ilN">
+                                                            <connections>
+                                                                <segue destination="1VY-jq-cje" kind="popoverPresentation" identifier="AddTaskSegue" popoverAnchorBarButtonItem="oYD-rA-ilN" id="2Kk-uq-DMY">
+                                                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                                                </segue>
+                                                            </connections>
+                                                        </barButtonItem>
                                                     </navigationItem>
                                                 </items>
                                             </navigationBar>
@@ -812,6 +803,16 @@
                                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="niZ-fZ-rSW">
                                                 <rect key="frame" x="0.0" y="356" width="400" height="44"/>
                                                 <items>
+                                                    <barButtonItem style="plain" id="TBo-7T-kzI">
+                                                        <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="O4D-0D-EpD">
+                                                            <rect key="frame" x="20" y="6.5" width="51" height="31"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </switch>
+                                                    </barButtonItem>
+                                                    <barButtonItem enabled="NO" title="Completion reminder" width="410" id="XE0-Ds-dKx">
+                                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </barButtonItem>
+                                                    <barButtonItem enabled="NO" id="Hz6-Kk-YQH"/>
                                                     <barButtonItem systemItem="cancel" id="0VH-9P-MS5">
                                                         <color key="tintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <connections>
@@ -912,7 +913,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="6S0-TO-JiA"/>
         <segue reference="3Bm-no-Fcc"/>
-        <segue reference="okp-XI-d8A"/>
         <segue reference="itc-Fb-8uM"/>
     </inferredMetricsTieBreakers>
 </document>
