@@ -29,7 +29,6 @@ class ProgressModel {
         let totalDays = Calendar.current.dateComponents([.day], from: coursework.setDate!, to: coursework.dueDate!).day!
         let daysRemaining = Calendar.current.dateComponents([.day], from: Date(), to: coursework.dueDate!).day!
         let percentageOfDaysRemaining = daysRemaining/totalDays
-        
         dateCountdown.showPercentage = false
         dateCountdown.progressRingWidth = CGFloat(15.0)
         dateCountdown.numberOfSegments = totalDays
@@ -41,7 +40,7 @@ class ProgressModel {
         let taskProgress = M13ProgressViewBar.init(frame: frame)
         let currentTaskProgress = Float(getCompletedTaskPercentage(ofCoursework: coursework))/100
         taskProgress.showPercentage = false
-        taskProgress.setProgress(CGFloat(currentTaskProgress), animated: false)
+        taskProgress.setProgress(CGFloat(currentTaskProgress), animated: true)
         return taskProgress
     }
     
