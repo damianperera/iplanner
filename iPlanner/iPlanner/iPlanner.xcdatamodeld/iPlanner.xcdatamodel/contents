@@ -10,6 +10,7 @@
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="reminderDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="reminderName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="setDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="weight" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Task" inverseName="coursework" inverseEntity="Task" syncable="YES"/>
     </entity>
@@ -23,7 +24,7 @@
         <relationship name="coursework" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Coursework" inverseName="tasks" inverseEntity="Coursework" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Coursework" positionX="-227" positionY="-9" width="128" height="210"/>
+        <element name="Coursework" positionX="-227" positionY="-9" width="128" height="225"/>
         <element name="Task" positionX="-54" positionY="45" width="128" height="150"/>
     </elements>
 </model>

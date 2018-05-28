@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		40DD8EDA78211E2DBC36488D /* Pods_iPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD642178637E1DD1F0F4E6BA /* Pods_iPlanner.framework */; };
 		B348CD5620BC508200FDAF97 /* PercentageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B348CD5520BC508200FDAF97 /* PercentageModel.swift */; };
 		B35C60DD20A717F900E48F44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35C60DC20A717F900E48F44 /* AppDelegate.swift */; };
 		B35C60E220A717F900E48F44 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35C60E120A717F900E48F44 /* MasterViewController.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		752F2EDB5B20C8C44BB29057 /* Pods-iPlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iPlanner.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iPlanner/Pods-iPlanner.debug.xcconfig"; sourceTree = "<group>"; };
 		B348CD5520BC508200FDAF97 /* PercentageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentageModel.swift; sourceTree = "<group>"; };
 		B35C60D920A717F900E48F44 /* iPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B35C60DC20A717F900E48F44 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -36,6 +38,8 @@
 		B3DD8D2F20BA794200B78493 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		B3DD8D3120BA7B6600B78493 /* AddReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReminderViewController.swift; sourceTree = "<group>"; };
 		B3DD8D3320BA8D3000B78493 /* AddTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
+		BE493795EA60877B5674DD43 /* Pods-iPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iPlanner.release.xcconfig"; path = "Pods/Target Support Files/Pods-iPlanner/Pods-iPlanner.release.xcconfig"; sourceTree = "<group>"; };
+		CD642178637E1DD1F0F4E6BA /* Pods_iPlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iPlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,18 +48,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3DD8D3020BA794200B78493 /* EventKit.framework in Frameworks */,
+				40DD8EDA78211E2DBC36488D /* Pods_iPlanner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		50FAAFAB5D9FE98D233701E9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				752F2EDB5B20C8C44BB29057 /* Pods-iPlanner.debug.xcconfig */,
+				BE493795EA60877B5674DD43 /* Pods-iPlanner.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		B35C60D020A717F900E48F44 = {
 			isa = PBXGroup;
 			children = (
 				B35C60DB20A717F900E48F44 /* iPlanner */,
 				B35C60DA20A717F900E48F44 /* Products */,
 				B3DD8D2E20BA794100B78493 /* Frameworks */,
+				50FAAFAB5D9FE98D233701E9 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				B3DD8D2F20BA794200B78493 /* EventKit.framework */,
+				CD642178637E1DD1F0F4E6BA /* Pods_iPlanner.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -101,9 +117,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B35C60F020A717FB00E48F44 /* Build configuration list for PBXNativeTarget "iPlanner" */;
 			buildPhases = (
+				CE14C89DA564D9B950249D90 /* [CP] Check Pods Manifest.lock */,
 				B35C60D520A717F900E48F44 /* Sources */,
 				B35C60D620A717F900E48F44 /* Frameworks */,
 				B35C60D720A717F900E48F44 /* Resources */,
+				CD815EAC965B6EFBCB3CE23E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -159,6 +177,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		CD815EAC965B6EFBCB3CE23E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-iPlanner/Pods-iPlanner-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/M13ProgressSuite/M13ProgressSuite.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/M13ProgressSuite.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iPlanner/Pods-iPlanner-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CE14C89DA564D9B950249D90 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iPlanner-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B35C60D520A717F900E48F44 /* Sources */ = {
@@ -314,6 +371,7 @@
 		};
 		B35C60F120A717FB00E48F44 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 752F2EDB5B20C8C44BB29057 /* Pods-iPlanner.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -332,6 +390,7 @@
 		};
 		B35C60F220A717FB00E48F44 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE493795EA60877B5674DD43 /* Pods-iPlanner.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

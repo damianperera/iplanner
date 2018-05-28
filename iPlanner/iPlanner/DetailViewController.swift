@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import M13ProgressSuite
 
 class TaskTableViewCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
@@ -197,16 +198,33 @@ class DetailViewController: UIViewController, AddCourseworkDelegate, NSFetchedRe
         if let coursework = courseworkItem {
             self.title = coursework.name
             let diffInDays = Calendar.current.dateComponents([.day], from: Date(), to: coursework.dueDate!).day!
-
+            let currentTaskProgress = PercentageModel().getCompletePercentage(ofCoursework: coursework)
             courseworkModuleName?.text = coursework.moduleId
             courseworkLevel?.text = String(coursework.level)
             courseworkNotes?.text = coursework.notes
             courseworkMark?.text = String(coursework.mark) + "/100"
             courseworkWeight?.text = String(coursework.weight) + "%"
-            courseworkProgressText?.text = String(PercentageModel().getCompletePercentage(ofCoursework: coursework)) + "% Complete"
+            courseworkProgressText?.text = String(currentTaskProgress) + "% Complete"
             courseworkDaysLeft?.text = String(diffInDays) + " Days Left"
+            setProgressView(coursework: coursework, daysRemaining: Float(diffInDays), taskCompleteProgress: Float(currentTaskProgress)/100)
             toggleViews(isHidden: false)
         }
+    }
+    
+    func setProgressView(coursework: Coursework, daysRemaining: Float, taskCompleteProgress: Float) {
+        let dateFrame = CGRect(x: -25.0, y: -60.0, width: 150.0, height: 150.0)
+        let dateProgress = M13ProgressViewSegmentedRing.init(frame: dateFrame)
+        dateProgress.showPercentage = false
+        dateProgress.progressRingWidth = CGFloat(15.0)
+        dateProgress.numberOfSegments = Calendar.current.dateComponents([.day], from: coursework.setDate!, to: coursework.dueDate!).day!
+        dateProgress.setProgress(CGFloat(daysRemaining), animated: false)
+        courseworkDaysLeft?.addSubview(dateProgress)
+        
+        let taskFrame = CGRect(x: -68.0, y: 25.0, width: 250.0, height: 20.0)
+        let taskProgress = M13ProgressViewBar.init(frame: taskFrame)
+        taskProgress.showPercentage = false
+        taskProgress.setProgress(CGFloat(taskCompleteProgress), animated: false)
+        courseworkWeight?.addSubview(taskProgress)
     }
 
     func toggleViews(isHidden: Bool) {

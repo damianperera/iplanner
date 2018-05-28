@@ -16,7 +16,11 @@ class PercentageModel {
         for task in tasks {
             totalPercentage += Int(task.completed)
         }
-        return totalPercentage/tasks.count
+        var percentageComplete = 0
+        if (tasks.count != 0) {
+            percentageComplete = totalPercentage/tasks.count
+        }
+        return percentageComplete
     }
     
 }

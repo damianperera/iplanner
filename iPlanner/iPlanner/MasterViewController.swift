@@ -35,6 +35,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         newCoursework.weight = weight
         newCoursework.mark = mark
         newCoursework.notes = notes
+        newCoursework.setDate = Date()
         
         // Save the context.
         do {
