@@ -13,7 +13,6 @@ class TaskTableViewCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var notes: UILabel!
     @IBOutlet weak var countdown: UILabel!
-    @IBOutlet weak var completed: UILabel!
 }
 
 extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
@@ -67,7 +66,6 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     func configureCell(_ cell: TaskTableViewCell, withTask task: Task) {
         cell.name.text = task.name
         cell.notes.text = task.notes
-        cell.completed.text = String(task.completed) + "% Completed"
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
@@ -83,6 +81,10 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
             let diffInHours = Calendar.current.dateComponents([.hour], from: Calendar.current.startOfDay(for: task.dueDate!), to: task.dueDate!).hour!
             cell.countdown.text = String(diffInDays) + "d " + String(diffInHours) + "h"
         }
+        
+        removeSubViews(forView: cell.name)
+        let taskFrame = CGRect(x: -60.0, y: 3.0, width: 45.0, height: 45.0)
+        cell.name.addSubview(ProgressModel().getRingProgressOfTask(forTask: task, forFrame: taskFrame))
     }
     
 }
@@ -149,6 +151,12 @@ class DetailViewController: UIViewController, AddCourseworkDelegate, NSFetchedRe
         }
         
         configureView()
+    }
+    
+    func removeSubViews(forView view:UIView) {
+        for view in view.subviews {
+            view.removeFromSuperview()
+        }
     }
     
     func saveData(taskName: String, startDate: Date, dueDate: Date, complete: Int32, notes: String) {

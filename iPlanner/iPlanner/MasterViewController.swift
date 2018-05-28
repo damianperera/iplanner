@@ -157,7 +157,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     
     func addTaskProgress(forCoursework: Coursework, for view:UILabel) {
         let taskFrame = CGRect.init(x: 100.0, y: 2.0, width: 190, height: 10)
-        view.addSubview(ProgressModel().getBorderedBarProgressofTasks(ofCoursework: forCoursework, forFrame: taskFrame))
+        view.addSubview(ProgressModel().getBorderedBarProgressOfTasks(ofCoursework: forCoursework, forFrame: taskFrame))
     }
 
     // MARK: - Fetched results controller

@@ -24,31 +24,39 @@ class ProgressModel {
         return percentageComplete
     }
     
-    func getDateCountdown(ofCoursework: Coursework, forFrame: CGRect) -> M13ProgressViewSegmentedRing {
-        let dateCountdown = M13ProgressViewSegmentedRing.init(frame: forFrame)
-        let totalDays = Calendar.current.dateComponents([.day], from: ofCoursework.setDate!, to: ofCoursework.dueDate!).day!
-        let daysRemaining = Calendar.current.dateComponents([.day], from: Date(), to: ofCoursework.dueDate!).day!
+    func getDateCountdown(ofCoursework coursework:Coursework, forFrame frame:CGRect) -> M13ProgressViewSegmentedRing {
+        let dateCountdown = M13ProgressViewSegmentedRing.init(frame: frame)
+        let totalDays = Calendar.current.dateComponents([.day], from: coursework.setDate!, to: coursework.dueDate!).day!
+        let daysRemaining = Calendar.current.dateComponents([.day], from: Date(), to: coursework.dueDate!).day!
         let percentageOfDaysRemaining = daysRemaining/totalDays
         dateCountdown.showPercentage = false
         dateCountdown.progressRingWidth = CGFloat(15.0)
         dateCountdown.numberOfSegments = totalDays
-        dateCountdown.setProgress(CGFloat(percentageOfDaysRemaining), animated: false)
+        dateCountdown.setProgress(CGFloat(percentageOfDaysRemaining), animated: true)
         return dateCountdown
     }
     
-    func getBarProgressOfTasks(ofCoursework: Coursework, forFrame: CGRect) -> M13ProgressViewBar {
-        let taskProgress = M13ProgressViewBar.init(frame: forFrame)
-        let currentTaskProgress = Float(getCompletedTaskPercentage(ofCoursework: ofCoursework))/100
+    func getBarProgressOfTasks(ofCoursework coursework:Coursework, forFrame frame:CGRect) -> M13ProgressViewBar {
+        let taskProgress = M13ProgressViewBar.init(frame: frame)
+        let currentTaskProgress = Float(getCompletedTaskPercentage(ofCoursework: coursework))/100
         taskProgress.showPercentage = false
         taskProgress.setProgress(CGFloat(currentTaskProgress), animated: false)
         return taskProgress
     }
     
-    func getBorderedBarProgressofTasks(ofCoursework coursework:Coursework, forFrame frame: CGRect) -> M13ProgressViewBorderedBar {
+    func getBorderedBarProgressOfTasks(ofCoursework coursework:Coursework, forFrame frame:CGRect) -> M13ProgressViewBorderedBar {
         let taskProgress = M13ProgressViewBorderedBar.init(frame: frame)
         let currentTaskProgress = Float(getCompletedTaskPercentage(ofCoursework: coursework))/100
-        taskProgress.setProgress(CGFloat(currentTaskProgress), animated: false)
+        taskProgress.setProgress(CGFloat(currentTaskProgress), animated: true)
         taskProgress.successColor = UIColor.green
+        return taskProgress
+    }
+    
+    func getRingProgressOfTask(forTask task:Task, forFrame frame:CGRect) -> M13ProgressViewRing {
+        let taskProgress = M13ProgressViewRing.init(frame: frame)
+        let currentTaskProgress = Float(task.completed)/100
+        taskProgress.showPercentage = true
+        taskProgress.setProgress(CGFloat(currentTaskProgress), animated: true)
         return taskProgress
     }
     

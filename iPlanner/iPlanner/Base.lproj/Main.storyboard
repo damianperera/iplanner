@@ -246,15 +246,9 @@
                                                                     <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Completed %" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5zz-0N-Wil">
-                                                                    <rect key="frame" x="701" y="46" width="76" height="15"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Notes" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbk-Av-Mte">
-                                                                    <rect key="frame" x="90" y="52" width="603" height="17"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Notes" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbk-Av-Mte">
+                                                                    <rect key="frame" x="90" y="49" width="687" height="17"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
@@ -262,19 +256,16 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="6rL-6e-hQu" secondAttribute="trailing" constant="15" id="4mI-Ca-AdR"/>
                                                                 <constraint firstItem="fTd-Xq-cOu" firstAttribute="top" secondItem="tn6-0y-g2u" secondAttribute="topMargin" constant="10" id="6ba-cL-16b"/>
-                                                                <constraint firstItem="5zz-0N-Wil" firstAttribute="top" secondItem="6rL-6e-hQu" secondAttribute="bottom" constant="8" symbolic="YES" id="ElC-Xg-EWK"/>
-                                                                <constraint firstAttribute="bottomMargin" secondItem="dbk-Av-Mte" secondAttribute="bottom" constant="10" id="M33-Xe-Q9M"/>
+                                                                <constraint firstItem="dbk-Av-Mte" firstAttribute="leading" secondItem="fTd-Xq-cOu" secondAttribute="leading" id="KSW-7C-rht"/>
                                                                 <constraint firstItem="6rL-6e-hQu" firstAttribute="centerY" secondItem="fTd-Xq-cOu" secondAttribute="centerY" id="Mff-KF-ZYQ"/>
-                                                                <constraint firstItem="6rL-6e-hQu" firstAttribute="trailing" secondItem="tn6-0y-g2u" secondAttribute="trailingMargin" constant="10" id="QMB-Pr-Ugg"/>
-                                                                <constraint firstItem="dbk-Av-Mte" firstAttribute="leading" secondItem="fTd-Xq-cOu" secondAttribute="leading" id="SUp-l4-8Ar"/>
-                                                                <constraint firstItem="dbk-Av-Mte" firstAttribute="top" secondItem="fTd-Xq-cOu" secondAttribute="bottom" constant="5" id="b93-Jp-euL"/>
+                                                                <constraint firstItem="6rL-6e-hQu" firstAttribute="trailing" secondItem="tn6-0y-g2u" secondAttribute="trailingMargin" id="QMB-Pr-Ugg"/>
+                                                                <constraint firstAttribute="bottomMargin" secondItem="dbk-Av-Mte" secondAttribute="bottom" constant="15" id="XJk-9K-nm5"/>
+                                                                <constraint firstItem="dbk-Av-Mte" firstAttribute="top" secondItem="fTd-Xq-cOu" secondAttribute="bottom" constant="10" id="fRI-b1-N2A"/>
                                                                 <constraint firstItem="fTd-Xq-cOu" firstAttribute="leading" secondItem="tn6-0y-g2u" secondAttribute="leadingMargin" constant="75" id="hNx-A5-fvD"/>
-                                                                <constraint firstItem="dbk-Av-Mte" firstAttribute="centerX" secondItem="tn6-0y-g2u" secondAttribute="centerX" id="sb8-yJ-m6F"/>
-                                                                <constraint firstItem="5zz-0N-Wil" firstAttribute="trailing" secondItem="6rL-6e-hQu" secondAttribute="trailing" id="ugm-iE-JtK"/>
+                                                                <constraint firstItem="dbk-Av-Mte" firstAttribute="trailing" secondItem="6rL-6e-hQu" secondAttribute="trailing" id="mqK-eI-Wzu"/>
                                                             </constraints>
                                                         </tableViewCellContentView>
                                                         <connections>
-                                                            <outlet property="completed" destination="5zz-0N-Wil" id="bNv-7T-gTd"/>
                                                             <outlet property="countdown" destination="6rL-6e-hQu" id="5fd-Da-DOY"/>
                                                             <outlet property="name" destination="fTd-Xq-cOu" id="0AI-kt-9FV"/>
                                                             <outlet property="notes" destination="dbk-Av-Mte" id="2I2-bh-UvW"/>
