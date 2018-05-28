@@ -32,11 +32,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     func triggerWaitingNotifications(forCoursework coursework:Coursework) {
         let tasks = coursework.tasks?.array as! [Task]
         for task in tasks {
-            if task.notification {
-                let diffInMinutes = Calendar.current.dateComponents([.minute], from: Date(), to: task.dueDate!).minute!
-                if diffInMinutes <= 5 {
-                    showNotification(forTask: task)
-                }
+            let diffInMinutes = Calendar.current.dateComponents([.minute], from: Date(), to: task.dueDate!).minute!
+            if task.completed != 100 && task.notification && diffInMinutes <= 5 {
+                showNotification(forTask: task)
             }
         }
     }
