@@ -198,7 +198,7 @@ class DetailViewController: UIViewController, AddCourseworkDelegate, NSFetchedRe
         if let coursework = courseworkItem {
             self.title = coursework.name
             let diffInDays = Calendar.current.dateComponents([.day], from: Date(), to: coursework.dueDate!).day!
-            let currentTaskProgress = PercentageModel().getCompletePercentage(ofCoursework: coursework)
+            let currentTaskProgress = ProgressModel().getCompletedTaskPercentage(ofCoursework: coursework)
             courseworkModuleName?.text = coursework.moduleId
             courseworkLevel?.text = String(coursework.level)
             courseworkNotes?.text = coursework.notes
@@ -213,18 +213,10 @@ class DetailViewController: UIViewController, AddCourseworkDelegate, NSFetchedRe
     
     func setProgressView(coursework: Coursework, daysRemaining: Float, taskCompleteProgress: Float) {
         let dateFrame = CGRect(x: -25.0, y: -60.0, width: 150.0, height: 150.0)
-        let dateProgress = M13ProgressViewSegmentedRing.init(frame: dateFrame)
-        dateProgress.showPercentage = false
-        dateProgress.progressRingWidth = CGFloat(15.0)
-        dateProgress.numberOfSegments = Calendar.current.dateComponents([.day], from: coursework.setDate!, to: coursework.dueDate!).day!
-        dateProgress.setProgress(CGFloat(daysRemaining), animated: false)
-        courseworkDaysLeft?.addSubview(dateProgress)
+        courseworkDaysLeft?.addSubview(ProgressModel().getDateCountdown(ofCoursework: coursework, forFrame: dateFrame))
         
-        let taskFrame = CGRect(x: -68.0, y: 25.0, width: 250.0, height: 20.0)
-        let taskProgress = M13ProgressViewBar.init(frame: taskFrame)
-        taskProgress.showPercentage = false
-        taskProgress.setProgress(CGFloat(taskCompleteProgress), animated: false)
-        courseworkWeight?.addSubview(taskProgress)
+        let taskFrame = CGRect(x: -68.0, y: 20.0, width: 250.0, height: 20.0)
+        courseworkWeight?.addSubview(ProgressModel().getBarProgressOfTasks(ofCoursework: coursework, forFrame: taskFrame))
     }
 
     func toggleViews(isHidden: Bool) {
