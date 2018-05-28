@@ -51,11 +51,7 @@ class AddTaskViewController: UIViewController {
     }
     
     @IBAction func didClickCancel(_ sender: Any) {
-        if isEdit {
-            navigationController?.popToRootViewController(animated: true)
-        } else {
-            dismiss(animated: true, completion: nil)
-        }
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func didClickSave(_ sender: Any) {
@@ -81,7 +77,6 @@ class AddTaskViewController: UIViewController {
                 complete: Int32(complete)!,
                 notes: notes,
                 taskID: taskID!)
-            navigationController?.popToRootViewController(animated: true)
         } else {
             delegate?.saveData(
                 taskName: name,
@@ -89,8 +84,8 @@ class AddTaskViewController: UIViewController {
                 dueDate: dateFormatter.date(from: dueDate)!,
                 complete: Int32(complete)!,
                 notes: notes)
-            dismiss(animated: true, completion: nil)
         }
+        dismiss(animated: true, completion: nil)
     }
     
     @objc func dueDateChanged(sender: UIDatePicker) {
