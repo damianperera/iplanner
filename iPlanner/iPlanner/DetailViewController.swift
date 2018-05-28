@@ -227,7 +227,7 @@ class DetailViewController: UIViewController, AddCourseworkDelegate, NSFetchedRe
         if let daysLeft = courseworkDaysLeft {
             removeSubViews(forView: daysLeft)
         }
-        let dateFrame = CGRect(x: -25.0, y: -60.0, width: 150.0, height: 150.0)
+        let dateFrame = CGRect(x: -25.0, y: -65.0, width: 150.0, height: 150.0)
         courseworkDaysLeft?.addSubview(ProgressModel().getDateCountdown(ofCoursework: coursework, forFrame: dateFrame))
         
         if let weight = courseworkWeight {
