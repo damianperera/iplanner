@@ -169,6 +169,7 @@ class DetailViewController: UIViewController, AddCourseworkDelegate, NSFetchedRe
         }
         
         tableView.reloadData()
+        configureView()
     }
     
     func saveEditedData(taskName: String, startDate: Date, dueDate: Date, complete: Int32, notes: String, taskID: Int) {
@@ -189,6 +190,7 @@ class DetailViewController: UIViewController, AddCourseworkDelegate, NSFetchedRe
         }
         
         tableView.reloadData()
+        configureView()
     }
 
     func configureView() {
@@ -201,7 +203,7 @@ class DetailViewController: UIViewController, AddCourseworkDelegate, NSFetchedRe
             courseworkNotes?.text = coursework.notes
             courseworkMark?.text = String(coursework.mark) + "/100"
             courseworkWeight?.text = String(coursework.weight) + "%"
-            courseworkProgressText?.text = "Progressing"
+            courseworkProgressText?.text = String(PercentageModel().getCompletePercentage(ofCoursework: coursework)) + "% Complete"
             courseworkDaysLeft?.text = String(diffInDays) + " Days Left"
             toggleViews(isHidden: false)
         }
@@ -213,7 +215,7 @@ class DetailViewController: UIViewController, AddCourseworkDelegate, NSFetchedRe
             let secondView = view.viewWithTag(2),
             let thirdView = view.viewWithTag(3),
             let fourthView = view.viewWithTag(4),
-            let buttonColor = isHidden ? UIColor.clear as UIColor? : UIColor.magenta as UIColor? {
+            let buttonColor = isHidden ? UIColor.clear as UIColor? : UIView().tintColor as UIColor? {
             firstView.isHidden = isHidden
             secondView.isHidden = isHidden
             thirdView.isHidden = isHidden
@@ -229,6 +231,8 @@ class DetailViewController: UIViewController, AddCourseworkDelegate, NSFetchedRe
         toggleViews(isHidden: true)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 100
         configureView()
     }
 
