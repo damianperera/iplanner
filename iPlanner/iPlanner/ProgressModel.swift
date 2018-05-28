@@ -44,4 +44,12 @@ class ProgressModel {
         return taskProgress
     }
     
+    func getBorderedBarProgressofTasks(ofCoursework coursework:Coursework, forFrame frame: CGRect) -> M13ProgressViewBorderedBar {
+        let taskProgress = M13ProgressViewBorderedBar.init(frame: frame)
+        let currentTaskProgress = Float(getCompletedTaskPercentage(ofCoursework: coursework))/100
+        taskProgress.setProgress(CGFloat(currentTaskProgress), animated: false)
+        taskProgress.successColor = UIColor.green
+        return taskProgress
+    }
+    
 }

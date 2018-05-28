@@ -151,6 +151,13 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             let diffInHours = Calendar.current.dateComponents([.hour], from: Calendar.current.startOfDay(for: coursework.dueDate!), to: coursework.dueDate!).hour!
             cell.countdown.text = String(diffInDays) + "d " + String(diffInHours) + "h"
         }
+        
+        addTaskProgress(forCoursework: coursework, for: cell.mark)
+    }
+    
+    func addTaskProgress(forCoursework: Coursework, for view:UILabel) {
+        let taskFrame = CGRect.init(x: 100.0, y: 2.0, width: 190, height: 10)
+        view.addSubview(ProgressModel().getBorderedBarProgressofTasks(ofCoursework: forCoursework, forFrame: taskFrame))
     }
 
     // MARK: - Fetched results controller

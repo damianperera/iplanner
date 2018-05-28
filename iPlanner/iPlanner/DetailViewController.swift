@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-import M13ProgressSuite
 
 class TaskTableViewCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
